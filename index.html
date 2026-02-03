@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <title>Blackjack Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🃏 Blackjack Pro</h1>
+
+  <div id="game">
+    <label>Tavo ranka:
+      <input id="player" placeholder="pvz: 16">
+    </label>
+
+    <label>Dealerio korta:
+      <input id="dealer" placeholder="pvz: 10">
+    </label>
+
+    <button onclick="getAdvice()">Gauti patarimą</button>
+    <h2 id="result"></h2>
+  </div>
+
+  <script src="strategy.js"></script>
+  <script src="trainer.js"></script>
+  <script src="stats.js"></script>
+  <script src="bankroll.js"></script>
+</body>
+</html>
