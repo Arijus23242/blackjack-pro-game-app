@@ -47,32 +47,30 @@
 
   <script src="strategy.js"></script>
   <script>
-    let playerHand = [];
-    let dealerCard = 0;
+   let playerHand = [];
+let dealerCard = 0;
 
-    function addCard(card) {
-      playerHand.push(card);
-      showAdvice();
-    }
+function addCard(card) {
+    playerHand.push(parseInt(card));
+    showAdvice();
+}
 
-    function setDealer(card) {
-      dealerCard = parseInt(card);
-      showAdvice();
-    }
+function setDealer(card) {
+    dealerCard = parseInt(card);
+    showAdvice();
+}
 
-    function clearCards() {
-      playerHand = [];
-      dealerCard = 0;
-      document.getElementById("result").innerText = "Pasirink kortas";
-    }
+function clearCards() {
+    playerHand = [];
+    dealerCard = 0;
+    document.getElementById("result").innerText = "Pasirink kortas";
+}
 
-    function showAdvice() {
-      if (!dealerCard || playerHand.length === 0) return;
-      let p = playerHand.join(",");
-      document.getElementById("player").value = p;
-      document.getElementById("dealer").value = dealerCard;
-      getAdvice();
-    }
+function showAdvice() {
+    if(playerHand.length===0 || dealerCard===0) return;
+    const advice = getAdvice(playerHand, dealerCard);
+    document.getElementById("result").innerText = "👉 " + advice;
+}
   </script>
 
   <!-- slepiame senus input laukus -->
