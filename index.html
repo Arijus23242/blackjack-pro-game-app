@@ -2,30 +2,81 @@
 <html lang="lt">
 <head>
   <meta charset="UTF-8">
-  <title>Blackjack Pro</title>
+  <title>Blackjack Pro LIVE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🃏 Blackjack Pro</h1>
+  <h1>🃏 Blackjack Pro LIVE</h1>
 
   <div id="game">
-    <label>Tavo ranka:
-      <input id="player" placeholder="pvz: 16">
-    </label>
+    <h2>Tavo korta</h2>
+    <div id="player-cards">
+      <!-- Mygtukai 2–11 -->
+      <button onclick="addCard('2')">2</button>
+      <button onclick="addCard('3')">3</button>
+      <button onclick="addCard('4')">4</button>
+      <button onclick="addCard('5')">5</button>
+      <button onclick="addCard('6')">6</button>
+      <button onclick="addCard('7')">7</button>
+      <button onclick="addCard('8')">8</button>
+      <button onclick="addCard('9')">9</button>
+      <button onclick="addCard('10')">10</button>
+      <button onclick="addCard('11')">A</button>
+    </div>
 
-    <label>Dealerio korta:
-      <input id="dealer" placeholder="pvz: 10">
-    </label>
+    <h2>Dealerio korta</h2>
+    <div id="dealer-cards">
+      <button onclick="setDealer(2)">2</button>
+      <button onclick="setDealer(3)">3</button>
+      <button onclick="setDealer(4)">4</button>
+      <button onclick="setDealer(5)">5</button>
+      <button onclick="setDealer(6)">6</button>
+      <button onclick="setDealer(7)">7</button>
+      <button onclick="setDealer(😎">8</button>
+      <button onclick="setDealer(9)">9</button>
+      <button onclick="setDealer(10)">10</button>
+      <button onclick="setDealer(11)">A</button>
+    </div>
 
-    <button onclick="getAdvice()">Gauti patarimą</button>
-    <h2 id="result"></h2>
+    <h2>Rezultatas</h2>
+    <h2 id="result">Pasirink kortas</h2>
+    <button onclick="clearCards()">Išvalyti kortas</button>
   </div>
 
   <script src="strategy.js"></script>
-  <script src="trainer.js"></script>
-  <script src="stats.js"></script>
-  <script src="bankroll.js"></script>
+  <script>
+    let playerHand = [];
+    let dealerCard = 0;
+
+    function addCard(card) {
+      playerHand.push(card);
+      showAdvice();
+    }
+
+    function setDealer(card) {
+      dealerCard = parseInt(card);
+      showAdvice();
+    }
+
+    function clearCards() {
+      playerHand = [];
+      dealerCard = 0;
+      document.getElementById("result").innerText = "Pasirink kortas";
+    }
+
+    function showAdvice() {
+      if (!dealerCard || playerHand.length === 0) return;
+      let p = playerHand.join(",");
+      document.getElementById("player").value = p;
+      document.getElementById("dealer").value = dealerCard;
+      getAdvice();
+    }
+  </script>
+
+  <!-- slepiame senus input laukus -->
+  <input type="hidden" id="player">
+  <input type="hidden" id="dealer">
 </body>
 </html>
